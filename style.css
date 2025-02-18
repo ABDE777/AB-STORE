@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box; /* Makes sizing calculations easier */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: black;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    /* Prevents horizontal scrolling */
+    overflow-x: hidden;
+    /* Makes sure the body takes up full height */
+    min-height: 100vh;
+    width: 100%;
+}
+
+.loader-container {
+    /* Covers the whole screen */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    /* Centers the loader */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Makes sure loader appears on top */
+    z-index: 9999;
+}
+
+.loader {
+    /* Creates a circular loading spinner */
+    border: 6px solid rgba(255, 255, 255, 0.2);
+    border-left-color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /* Spins the loader */
+    animation: spin 2s linear infinite;
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Makes video cover the whole screen */
+    object-fit: cover;
+    /* Start invisible and fade in */
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+    /* Places video behind other content */
+    z-index: -1;
+}
+
+.container-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    /* Keeps nav on top */
+    z-index: 100;
+}
+
+nav img {
+    width: 120px;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav img:hover {
+    transform: scale(1.1);
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.a {
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+    width: 130px;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    position: relative;
+    /* Smooth transition for hover effects */
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    border: 2px solid #44A3E0;
+    font-size: 16px;
+}
+
+.a:hover {
+    color: #44A3E0;
+    transform: scale(1.1);
+}
+
+section {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 15px;
+    margin: 100px auto;
+    animation: fadeZoomIn 2s ease-in-out;
+}
+
+section h1 {
+    font-size: 3em;
+    color: white;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1.5s ease-in-out forwards,
+              bounce 1s ease-in-out infinite alternate;
+}
+
+section h1 span {
+    color: rgb(68, 120, 197);
+}
+
+
+section h5 {
+    color: white;
+    font-size: 1.5em;
+    font-weight: lighter;
+    opacity: 0;
+    transform: translateY(20px);
+    /* Delayed animation */
+    animation: fadeInUp 1.5s 0.5s ease-in-out forwards;
+    margin: 30px;
+}
+
+.a-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    gap: 15px;
+}
+
+.a-container a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 15px;
+    width: 200px;
+    background-color: transparent;
+    border: 2px solid white;
+    text-align: center;
+    /* Smooth hover effect */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    animation: bounce 1s ease-in-out infinite alternate;
+    font-size: 16px;
+}
+
+.a-container a:first-of-type {
+    background-color: rgb(68, 120, 197);
+    border-color: rgb(68, 120, 197);
+}
+
+.a-container a:hover {
+    background-color: white;
+    color: black;
+    transform: translateY(-5px);
+    border: 2px solid white;
+}
+
+@media screen and (max-width: 768px) {
+    /* Stack navigation items vertically */
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    ul {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .a {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .a-container a {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    section h1 {
+        font-size: 1.8em;
+    }
+
+    section h5 {
+        font-size: 1em;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.7; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+html {
+    scroll-behavior: smooth;
+}
